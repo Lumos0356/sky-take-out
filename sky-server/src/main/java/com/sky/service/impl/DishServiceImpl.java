@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -71,12 +70,8 @@ public class DishServiceImpl implements DishService {
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }
         //3.删除菜品表中的数据
-        ids.forEach(id -> {
-            dishMapper.deleteById(id);
-            //4.删除菜品-口味表中的数据
-            dishFlavorMapper.deleteByDishId(id);
-        });
-
-
+        dishMapper.deleteByIds(ids);
+        //4.删除菜品-口味表中的数据
+        dishFlavorMapper.deleteByDishIds(ids);
     }
 }
