@@ -31,4 +31,6 @@ public interface SetmealMapper {
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
 
     void deleteByIds(List<Long> setmealIds);
+
+    void update(Setmeal setmeal);
 }
